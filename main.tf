@@ -21,7 +21,7 @@ resource "aws_lambda_function" "mcp_tool_lambda" {
     variables = var.environment
   }
   source_code_hash = filebase64sha256("${path.module}/../../../code/function.zip")
-  filename = "${path.module}/../../code/function.zip"
+  filename = "${path.module}/../../../code/function.zip"
 
   depends_on = [data.archive_file.zip]
 }
