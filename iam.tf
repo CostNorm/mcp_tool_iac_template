@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "${var.prefix}-agent-tool-lambda-role"
+  name = "${var.function_name}-lambda-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -67,7 +67,7 @@ resource "aws_iam_role_policy_attachment" "rds_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_policy_attachment" {
+resource "aws_iam_role_policy_attachment" "lambda_resource_policy_attachment" {
   count = var.attach_lambda_policy ? 1 : 0
   role = aws_iam_role.lambda_role.name
   policy_arn = "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
