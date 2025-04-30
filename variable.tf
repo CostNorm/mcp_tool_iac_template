@@ -6,9 +6,8 @@ variable "profile" {
     type = string
     default = "costnorm"
 }
-variable "prefix" {
-    type = string
-    default = "costnorm"
+variable "function_name" {
+  type = string
 }
 variable "lambda_timeout" {
   type = number
