@@ -6,7 +6,7 @@ provider "aws" {
 data "archive_file" "zip" {
   type = "zip"
   source_dir = "${path.module}/../../../../code/"
-  output_path = "${path.module}/../../../../code/function.zip"
+  output_path = "${path.module}/../../../../function.zip"
 }
 
 resource "aws_lambda_function" "mcp_tool_lambda" {
@@ -20,7 +20,7 @@ resource "aws_lambda_function" "mcp_tool_lambda" {
   environment {
     variables = var.environment
   }
-  filename = "${path.module}/../../../../code/function.zip"
+  filename = "${path.module}/../../../../function.zip"
 
   depends_on = [data.archive_file.zip]
 }
