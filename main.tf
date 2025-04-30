@@ -3,6 +3,12 @@ provider "aws" {
   profile = var.profile
 }
 
+data "archive_file" "zip" {
+  type = "zip"
+  source_dir = "${path.module}/../../code/"
+  output_path = "${path.module}/../../code/function.zip"
+}
+
 resource "aws_lambda_function" "mcp_tool_lambda" {
   function_name = "${var.function_name}"
   role = aws_iam_role.lambda_role.arn
@@ -14,6 +20,8 @@ resource "aws_lambda_function" "mcp_tool_lambda" {
   environment {
     variables = var.environment
   }
-  source_code_hash = filebase64sha256("${path.module}/mcp_tool.py")
-  filename = "${path.module}/mcp_tool.py"
+  source_code_hash = filebase64sha256("${path.module}/../../code/function.zip")
+  filename = "${path.module}/../../code/function.zip"
+
+  depends_on = [data.archive_file.zip]
 }
