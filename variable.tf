@@ -76,3 +76,8 @@ variable "attach_ssm_policy" {
   type = bool
   default = false
 }
+
+variable "attach_efs_policy" {
+  type = bool
+  default = false
+}
