@@ -81,3 +81,8 @@ variable "attach_efs_policy" {
   type = bool
   default = false
 }
+
+variable "attach_athena_policy" {
+  type = bool
+  default = false
+}
