@@ -81,6 +81,12 @@ variable "attach_efs_policy" {
   type = bool
   default = false
 }
+
+variable "attach_cloudtrail_policy" {
+  type = bool
+  default = false
+}
+
 variable "attach_lambda_arch_change_policy" {
   type = bool
   default = false
